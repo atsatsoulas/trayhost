@@ -93,7 +93,7 @@ void native_loop(const char *title, unsigned char *imageData, unsigned int image
     nid.uCallbackMessage = WM_MYMESSAGE;
     nid.hIcon = hIcon;
 
-    wcscpy((wchar_t*)nid.szTip, szTitle); // MinGW seems to use ANSI
+    wcscpy((wchar_t*)nid.szTip, (wchar_t*)szTitle); // MinGW seems to use ANSI
     nid.uFlags = NIF_MESSAGE | NIF_ICON | NIF_TIP;
 
     Shell_NotifyIcon(NIM_ADD, &nid);
