@@ -34,7 +34,7 @@ void native_loop(const char *title, unsigned char *imageData, unsigned int image
 
     titleWide = (wchar_t*)calloc(strlen(title) + 1, sizeof(wchar_t));
     
-    MultiByteToWideChar(CP_UTF8,0,title,-1,titleWide,dwUnicodeLen)
+    MultiByteToWideChar(CP_UTF8,0,title,-1,titleWide,dwUnicodeLen);
     
     mbstowcs(titleWide, title, strlen(title));
 
