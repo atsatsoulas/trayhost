@@ -28,8 +28,14 @@ void native_loop(const char *title, unsigned char *imageData, unsigned int image
     HINSTANCE hInstance = GetModuleHandle(NULL);
 
     MSG msg;
+    
+    DWORD dwUnicodeLen = MultiByteToWideChar(CP_UTF8,0,title,-1,NULL,0);
+    
 
     titleWide = (wchar_t*)calloc(strlen(title) + 1, sizeof(wchar_t));
+    
+    MultiByteToWideChar(CP_UTF8,0,title,-1,titleWide,dwUnicodeLen)
+    
     mbstowcs(titleWide, title, strlen(title));
 
     wcscpy((wchar_t*)szTitle, titleWide);
