@@ -36,7 +36,7 @@ void native_loop(const char *title, unsigned char *imageData, unsigned int image
     
     MultiByteToWideChar(CP_UTF8,0,title,-1,titleWide,dwUnicodeLen);
     
-    mbstowcs(titleWide, title, strlen(title));
+    //mbstowcs(titleWide, title, strlen(title));
 
     wcscpy((wchar_t*)szTitle, titleWide);
     wcscpy((wchar_t*)szWindowClass, (wchar_t*)TEXT("MyClass"));
