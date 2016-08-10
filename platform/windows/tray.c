@@ -1,3 +1,6 @@
+#define UNICODE
+#define _UNICODE 
+
 #include <stdio.h>
 #include <windows.h>
 #include <shellapi.h>
@@ -75,7 +78,7 @@ void native_loop(const char *title, unsigned char *imageData, unsigned int image
         }
 
         // Dump the icon to the temp file
-        FILE* fIcon = fopen(szTempFileName, "wb");
+        FILE* fIcon = _wfopen(szTempFileName, TEXT("wb"));
         fwrite(imageData, 1, imageDataLen, fIcon);
         fclose(fIcon);
         fIcon = NULL;
@@ -84,7 +87,7 @@ void native_loop(const char *title, unsigned char *imageData, unsigned int image
         hIcon = LoadImage(NULL, szTempFileName, IMAGE_ICON, 64, 64, LR_LOADFROMFILE);
 
         // Delete the temp file
-        remove(szTempFileName);
+        _wremove(szTempFileName);
     }
 
     nid.cbSize = sizeof(NOTIFYICONDATA);
@@ -93,7 +96,7 @@ void native_loop(const char *title, unsigned char *imageData, unsigned int image
     nid.uCallbackMessage = WM_MYMESSAGE;
     nid.hIcon = hIcon;
 
-    //wcscpy((wchar_t*)nid.szTip, (wchar_t*)titleWide); // MinGW seems to use ANSI
+    wcscpy((wchar_t*)nid.szTip, (wchar_t*)titleWide); // MinGW seems to use ANSI
     nid.uFlags = NIF_MESSAGE | NIF_ICON | NIF_TIP;
 
     Shell_NotifyIcon(NIM_ADD, &nid);
