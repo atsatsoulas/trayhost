@@ -160,7 +160,7 @@ void ShowMenu(HWND hWnd)
         AppendMenuW(hSubMenu, MF_STRING, CMD_OPEN_IN_BROWSER, L"显示界面");
     }
     AppendMenuW(hSubMenu, MF_SEPARATOR, 0, NULL);
-    AppendMenuW(hSubMenu, MF_STRING, CMD_EXIT, L"Exit");
+    AppendMenuW(hSubMenu, MF_STRING, CMD_EXIT, L"退出");
 
     SetForegroundWindow(hWnd); // Win32 bug work-around
     TrackPopupMenu(hSubMenu, TPM_BOTTOMALIGN | TPM_LEFTALIGN, p.x, p.y, 0, hWnd, NULL);
